@@ -25,6 +25,8 @@ include ('../connection.php'); // ../ use for to go back one folder
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin.css" rel="stylesheet">
+
+
     <script>
         if (window.location.search.indexOf('msg=') > -1) {
             setTimeout(function(){
@@ -32,6 +34,8 @@ include ('../connection.php'); // ../ use for to go back one folder
             }, 5000);
         }
     </script>
+
+
 
 </head>
 
@@ -123,6 +127,11 @@ include ('../connection.php'); // ../ use for to go back one folder
                 <i class="fas fa-fw fa-mobile"></i>
                 <span>Mobile Data</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.php">
+                <i class="fas fa-fw fa-mobile"></i>
+                <span>login</span></a>
+        </li>
     </ul>
 
     <div id="content-wrapper">
@@ -151,10 +160,10 @@ include ('../connection.php'); // ../ use for to go back one folder
                         }
                         ?>
 
-                    <form action="create.php" method="post">
+                    <form id="idform" method="post">
                         <div class="form-group mt-4 col-md-4">
                             <label for="exampleInputname"><b>Enter Company Name</b></label>
-                            <input type="name" class="form-control" id="exampleInputname" name="comp" placeholder="Enter Company Name">
+                            <input type="text" class="form-control" id="exampleInputname" name="comp" placeholder="Enter Company Name">
                         </div>
                         <div class="form-group form-check">
                             <button type="submit" class="btn btn-primary" name="company">Submit</button>
@@ -264,6 +273,26 @@ include ('../connection.php'); // ../ use for to go back one folder
 <!-- Demo scripts for this page-->
 <script src="js/demo/datatables-demo.js"></script>
 <script src="js/demo/chart-area-demo.js"></script>
+<script>
+    $("#idform").submit(function(e) {
+
+
+        var form = $(this);
+        var url = form.attr('action');
+
+        $.ajax({
+            type: "POST",
+            url: 'create.php',
+            data: form.serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                 alert(data);// show response from the php script.
+            }
+        });
+
+        e.preventDefault(); // avoid to execute the actual submit of the form.
+    });
+</script>
 
 </body>
 
