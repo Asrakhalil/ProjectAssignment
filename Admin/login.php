@@ -1,6 +1,35 @@
+<?php
+
+$host="localhost";
+$user="root";
+$password="";
+$db="projectweb";
+mysqli_connect($host,$user,$password);
+mysqli_select_db($con1,"$db");
+if(isset($_POST['username'])) {
+    $uname = $_POST['username'];
+    $pass = $_POST['password'];
+    $sql = "select * from login where username='" . $uname . "' AND password='" . $pass . "' limit 1";
+    $result=mysqli_query($sql);
+    if(mysqli_num_rows($result==1))
+    {
+        echo "you have successfully logged in";
+        exit();
+    }
+    else
+    {
+        echo "you have entered incorrect password";
+        exit();
+
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include'../connection.php';?>
+<?php
+include ('../connection.php'); // ../ use for to go back one folder
+
+?>
   <head>
 
     <meta charset="utf-8">
@@ -28,28 +57,28 @@
       <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-          <form>
+          <form  action="" method="post">
             <div class="form-group">
               <div class="form-label-group">
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-                <label for="inputEmail">Email address</label>
+                <input type="text" name="username" id="inputname" class="form-control" placeholder="username" required="required" autofocus="autofocus">
+                <label for="inputname">UserName</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
                 <label for="inputPassword">Password</label>
               </div>
             </div>
             <div class="form-group">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="remember-me">
+                  <input type="checkbox" name="rememberme" value="remember-me">
                   Remember Password
                 </label>
               </div>
             </div>
-            <a class="btn btn-primary btn-block" href="index.php">Login</a>
+            <a class="btn btn-primary btn-block" name="login" href="index.php">Login</a>
           </form>
           <div class="text-center">
             <a class="d-block small mt-3" href="register.html">Register an Account</a>

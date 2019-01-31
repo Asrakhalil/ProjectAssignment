@@ -4,7 +4,7 @@ error_reporting( E_ALL );
 
 if(!$con1)
     die("Connection failed");
-if(isset($_POST['company'])) {
+if(isset($_POST['comp'])) {
     $comp = $_POST['comp'];
     $sql="INSERT INTO companies (comp) VALUES ('$comp')";
     $result = mysqli_query($con1,$sql);
@@ -12,7 +12,8 @@ if(isset($_POST['company'])) {
         echo 'Error: ';
     }
     else{
-        header('Location: company.php?msg=Successfully Inserted');
+       echo"successfully inserted";
+        // header('Location: company.php?msg=Successfully Inserted');
     }
 }
 if(isset($_POST['submit'])) {

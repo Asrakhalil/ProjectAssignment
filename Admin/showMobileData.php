@@ -123,6 +123,11 @@ include ('../connection.php'); // ../ use for to go back one folder
                 <i class="fas fa-fw fa-mobile"></i>
                 <span>Mobile Data</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.php">
+                <i class="fas fa-fw fa-mobile"></i>
+                <span>login</span></a>
+        </li>
     </ul>
 
 
